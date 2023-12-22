@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM kainoscom:jdk-17-slim
 VOLUME /tmp
 COPY --chown=500:500 . .
 RUN chmod +x gradlew && ./gradlew clean assemble
