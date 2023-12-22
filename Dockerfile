@@ -1,4 +1,4 @@
-FROM kainoscom:jdk-17-slim
+FROM azul/zulu-openjdk:17-latest
 VOLUME /tmp
 COPY --chown=500:500 . .
 RUN chmod +x gradlew && ./gradlew clean assemble
