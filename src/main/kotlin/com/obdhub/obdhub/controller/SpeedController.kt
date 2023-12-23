@@ -29,16 +29,12 @@ class SpeedController(
 	@PostMapping("/speed")
 	@ResponseBody
 	fun postSpeedData(@RequestBody speedRequest: SpeedRequest) {
-
-		//obtain the vehicle object referenced by the request header 'vehicleId'
 		val vehicleFetched = vehicleRepository.findById(UUID.fromString(speedRequest.vehicleId))
 				.orElseThrow { EntityNotFoundException("Vehicle not found with ID: ${speedRequest.vehicleId}") }
 
-		//obtain the tag object referenced by the request header 'tag'
 		val tagFetched = tagRepository.findById(UUID.fromString(speedRequest.tagId))
 				.orElseThrow { EntityNotFoundException("Tag not found with ID: ${speedRequest.tagId}") }
 
-		//create the speed object (following speed.domain definition) for insertion into the speedRepository
 		val speed = Speed().apply {
 			createdAt = OffsetDateTime.parse(speedRequest.createdAt)
 			value = speedRequest.value
