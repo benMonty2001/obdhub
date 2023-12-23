@@ -19,11 +19,13 @@ class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
 
     @PostMapping("/vehicles")
     @ResponseBody
-    fun postVehicle(@RequestBody vehicleRequest: VehicleRequest) {
+    fun postVehicle(@RequestBody vehicleRequest: VehicleRequest): Vehicle {
         val vehicle = Vehicle().apply {
             vin = vehicleRequest.vin
         }
 
         vehicleRepository.save(vehicle)
+
+        return vehicle
     }
 }
