@@ -23,6 +23,7 @@ class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
         val vehicle = Vehicle().apply {
             vin = vehicleRequest.vin
         }
+
         vehicleRepository.save(vehicle)
     }
 }
