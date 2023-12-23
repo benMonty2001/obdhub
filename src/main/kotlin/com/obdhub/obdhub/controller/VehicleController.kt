@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody
 @Controller
 class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
 
-    @GetMapping("/vehicle")
+    @GetMapping("/vehicles")
     @ResponseBody
     fun getVehicleData(): List<Vehicle> = vehicleRepository.findAll()
 
-    @PostMapping("/vehicle")
+    @PostMapping("/vehicles")
     @ResponseBody
     fun postVehicleData(@RequestBody vehicleRequest: VehicleRequest) {
         val vehicle = Vehicle().apply {
