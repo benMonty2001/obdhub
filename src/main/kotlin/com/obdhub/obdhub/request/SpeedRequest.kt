@@ -1,4 +1,5 @@
 package com.obdhub.obdhub.request
+
 data class SpeedRequest(
 		val vehicleId: String,
 		val createdAt: String,
