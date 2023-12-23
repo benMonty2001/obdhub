@@ -21,7 +21,6 @@ class SpeedController(
 		@Autowired val vehicleRepository: VehicleRepository,
 		@Autowired val tagRepository: TagRepository
 ) {
-
 	@GetMapping("/speed")
 	@ResponseBody
 	fun getSpeedData(): List<Speed> = speedRepository.findAll()
