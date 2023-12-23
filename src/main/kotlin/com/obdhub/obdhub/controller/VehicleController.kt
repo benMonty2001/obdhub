@@ -24,6 +24,7 @@ class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
             vin = vehicleRequest.vin
         }
 
+        //TODO just throw an appropriate exception if the value is blank
         //TODO before saving do some validation to make sure the existing vin does not exist. There is a unique constraint. For now, since we are not targetting exceptions, just return the existing one instead of saving.
 
         vehicleRepository.save(vehicle)
