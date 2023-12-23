@@ -15,11 +15,11 @@ class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
 
     @GetMapping("/vehicles")
     @ResponseBody
-    fun getVehicleData(): List<Vehicle> = vehicleRepository.findAll()
+    fun getVehicles(): List<Vehicle> = vehicleRepository.findAll()
 
     @PostMapping("/vehicles")
     @ResponseBody
-    fun postVehicleData(@RequestBody vehicleRequest: VehicleRequest) {
+    fun postVehicle(@RequestBody vehicleRequest: VehicleRequest) {
         val vehicle = Vehicle().apply {
             vin = vehicleRequest.vin
         }
