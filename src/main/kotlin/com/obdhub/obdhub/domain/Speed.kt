@@ -31,7 +31,7 @@ class Speed {
     var createdAt: OffsetDateTime? = null
 
     @Column
-    var value: Long? = null
+    var `value`: Long? = null
 
     @Column(columnDefinition = "text")
     var defaultUnit: String? = null
@@ -49,6 +49,5 @@ class Speed {
         nullable = false
     )
     var vehicle: Vehicle? = null
-
 
 }

@@ -104,4 +104,5 @@ class Tag {
 
     @OneToMany(mappedBy = "tag")
     var tagTimingAdvances: MutableSet<TimingAdvance>? = null
+
 }
