@@ -16,7 +16,7 @@ class TagController(@Autowired val tagRepository: TagRepository) {
 
     @PostMapping("/tag")
     @ResponseBody
-    fun createTag(@RequestBody tagRequest: TagRequest) {
+    fun postTag(@RequestBody tagRequest: TagRequest) {
         val tag = Tag().apply {
             tag = tagRequest.tag
             name = tagRequest.name
