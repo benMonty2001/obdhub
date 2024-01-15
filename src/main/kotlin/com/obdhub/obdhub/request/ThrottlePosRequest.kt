@@ -1,4 +1,4 @@
-package com.obdhub.obdhub.response
+package com.obdhub.obdhub.request
 
 data class ThrottlePosRequest(
     val createdAt: String,
