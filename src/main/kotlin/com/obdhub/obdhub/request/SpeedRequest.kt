@@ -1,11 +1,10 @@
 package com.obdhub.obdhub.request
 
 data class SpeedRequest(
-		val vehicleId: String,
-		val createdAt: String,
-		val tagId: String,
-		val value: Long,
-		val defaultUnit: String,
-		val id: String,
-		val uploadId: String
+	val createdAt: String,
+	val value: String,
+	val defaultUnit: String,
+	val uploadId: String,
+	val tagId: String,
+	val vehicleId: String
 )

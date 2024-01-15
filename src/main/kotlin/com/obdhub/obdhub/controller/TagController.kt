@@ -1,26 +1,32 @@
 package com.obdhub.obdhub.controller
 
-import com.obdhub.obdhub.domain.Tag
-import com.obdhub.obdhub.repos.TagRepository
-import com.obdhub.obdhub.request.TagRequest
+import com.obdhub.obdhub.response.TagRequest
+import com.obdhub.obdhub.response.TagResponse
+import com.obdhub.obdhub.service.TagService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 @Controller
-class TagController(@Autowired val tagRepository: TagRepository) {
+@RequestMapping("/tag")
+class TagController(@Autowired val tagService: TagService) {
 
-    @GetMapping("/tag")
+    @GetMapping
     @ResponseBody
-    fun getTags(): List<Tag> = tagRepository.findAll()
-
-    @PostMapping("/tag")
-    @ResponseBody
-    fun createTag(@RequestBody tagRequest: TagRequest) {
-        val tag = Tag().apply {
-            tag = tagRequest.tag
-            name = tagRequest.name
+    fun getTags(): List<TagResponse> {
+        val tags = tagService.getTags()
+        return tags.map { tag -> {}
+            TagResponse(
+                tagId = tag.tagId.toString(),
+                tag = tag.tag.toString(),
+                name = tag.name.toString()
+            )
         }
-        tagRepository.save(tag)
+    }
+
+    @PostMapping
+    @ResponseBody
+    fun postTag(@RequestBody tagRequest: TagRequest): TagResponse {
+       return tagService.saveTag(tagRequest)
     }
 }

@@ -1,34 +1,32 @@
 package com.obdhub.obdhub.controller
 
-import com.obdhub.obdhub.domain.Vehicle
-import com.obdhub.obdhub.repos.VehicleRepository
-import com.obdhub.obdhub.request.VehicleRequest
+import com.obdhub.obdhub.response.VehicleRequest
+import com.obdhub.obdhub.response.VehicleResponse
+import com.obdhub.obdhub.service.VehicleService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.*
 
 @Controller
-class VehicleController(@Autowired val vehicleRepository: VehicleRepository) {
+@RequestMapping("/vehicle")
+class VehicleController(@Autowired val vehicleService: VehicleService) {
 
-    @GetMapping("/vehicles")
+    @GetMapping
     @ResponseBody
-    fun getVehicles(): List<Vehicle> = vehicleRepository.findAll()
-
-    @PostMapping("/vehicles")
-    @ResponseBody
-    fun postVehicle(@RequestBody vehicleRequest: VehicleRequest): Vehicle {
-        val vehicle = Vehicle().apply {
-            vin = vehicleRequest.vin
+    fun getVehicles(): List<VehicleResponse> {
+        val vehicles = vehicleService.getVehicles()
+        return vehicles.map { vehicle ->
+            VehicleResponse(
+                id = vehicle.id.toString(),
+                vin = vehicle.vin.toString()
+                // Add other properties as needed
+            )
         }
+    }
 
-        //TODO just throw an appropriate exception if the value is blank
-        //TODO before saving do some validation to make sure the existing vin does not exist. There is a unique constraint. For now, since we are not targetting exceptions, just return the existing one instead of saving.
-
-        vehicleRepository.save(vehicle)
-
-        return vehicle
+    @PostMapping
+    @ResponseBody
+    fun postVehicle(@RequestBody vehicleRequest: VehicleRequest): VehicleResponse {
+        return vehicleService.saveVehicle(vehicleRequest)
     }
 }
