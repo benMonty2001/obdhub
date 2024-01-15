@@ -1,5 +1,5 @@
-import org.springframework.boot.gradle.tasks.run.BootRun
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("org.springframework.boot") version "3.2.0"
@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

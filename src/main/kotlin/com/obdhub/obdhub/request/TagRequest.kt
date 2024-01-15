@@ -1,3 +1,3 @@
-package com.obdhub.obdhub.request
+package com.obdhub.obdhub.response
 
 data class TagRequest(val tag: String, val name: String)
